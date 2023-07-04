@@ -16,6 +16,11 @@ class AppService {
     await appService!.emailPasswordAuthProvider.registerUser(email, password);
     return await appService!.logIn(Credentials.emailPassword(email, password));
   }
+
+  Future<void> logout() async {
+    appService = App(AppConfiguration(appId));
+    await appService!.currentUser!.logOut();
+  }
 }
 
 final appserviceProvider = Provider<AppService>((ref) {
